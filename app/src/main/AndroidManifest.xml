@@ -13,13 +13,13 @@
         android:theme="@style/Theme.FragmentTask"
         tools:targetApi="31">
         <activity
-            android:name=".FavoritesFragment"
+            android:name=".AddProductFragment"
             android:exported="false" />
         <activity
             android:name=".CartFragment"
             android:exported="false" />
         <activity
-            android:name=".HomeFragment"
+            android:name=".ProductsFragment"
             android:exported="false" />
         <activity
             android:name=".ProfileFragment"
