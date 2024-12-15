@@ -16,7 +16,11 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.material.bottomnavigation.BottomNavigationView
-class ProductAdapter(private val productList: List<Product>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(
+    private val productList: List<Product>,
+    private val onProductClick: (Product) -> Unit
+) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
         return ProductViewHolder(view)
@@ -27,6 +31,10 @@ class ProductAdapter(private val productList: List<Product>) : RecyclerView.Adap
         holder.productName.text = product.name
         holder.productPrice.text = "${product.price} тг"
         Glide.with(holder.itemView.context).load(product.imageUrl).into(holder.productImage)
+
+        holder.itemView.setOnClickListener {
+            onProductClick(product)
+        }
     }
 
     override fun getItemCount() = productList.size

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FragmentTask"
         tools:targetApi="31">
         <activity
+            android:name=".ProductDetailsFragment"
+            android:exported="false" />
+        <activity
             android:name=".AddProductFragment"
             android:exported="false" />
         <activity

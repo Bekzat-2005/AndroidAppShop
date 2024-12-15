@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
-
 class ProductsFragment : Fragment(R.layout.fragment_products) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,10 +24,18 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
                     val product = document.toObject(Product::class.java)
                     productList.add(product)
                 }
-                recyclerView.adapter = ProductAdapter(productList)
+
+                recyclerView.adapter = ProductAdapter(productList) { product ->
+                    val fragment = ProductDetailsFragment.newInstance(product)
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.frame, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Ошибка загрузки продуктов", Toast.LENGTH_SHORT).show()
             }
     }
 }
+

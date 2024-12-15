@@ -21,7 +21,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val userEmail = view.findViewById<TextView>(R.id.textViewUserEmail)
         val buttonLogout = view.findViewById<Button>(R.id.buttonLogout)
 
-        // TODO: Load user information from FirebaseAuth or database
+
 
         buttonLogout.setOnClickListener {
             Toast.makeText(context, "Выход из аккаунта", Toast.LENGTH_SHORT).show()

@@ -11,10 +11,18 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Итого: 0 тг"
+        android:textSize="18sp"
+        android:layout_marginVertical="16dp" />
+
     <Button
         android:id="@+id/btnCheckout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Оформить заказ"
-        android:textSize="16sp" />
+        android:text="Оформить заказ" />
 </LinearLayout>
+
