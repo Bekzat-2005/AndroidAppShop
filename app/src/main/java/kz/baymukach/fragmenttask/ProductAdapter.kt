@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.material.bottomnavigation.BottomNavigationView
 class ProductAdapter(
     private val productList: List<Product>,
+    private val addToCartCallback: (Product) -> Unit,
     private val onProductClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -32,8 +33,13 @@ class ProductAdapter(
         holder.productPrice.text = "${product.price} тг"
         Glide.with(holder.itemView.context).load(product.imageUrl).into(holder.productImage)
 
+
         holder.itemView.setOnClickListener {
             onProductClick(product)
+        }
+
+        holder.cartButton.setOnClickListener {
+            addToCartCallback(product)
         }
     }
 
@@ -43,5 +49,8 @@ class ProductAdapter(
         val productImage: ImageView = itemView.findViewById(R.id.productImage)
         val productName: TextView = itemView.findViewById(R.id.productName)
         val productPrice: TextView = itemView.findViewById(R.id.productPrice)
+        val cartButton: ImageView = itemView.findViewById(R.id.cartImage)
     }
 }
+
+

@@ -52,4 +52,3 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
         }
     }
 }
-

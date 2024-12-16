@@ -22,6 +22,19 @@
         android:text="Email пользователя"
         android:textSize="16sp"
         android:layout_marginBottom="16dp" />
+    <TextView
+        android:id="@+id/textViewUserPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Номер телефона"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+    <Button
+        android:id="@+id/buttonOrderHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="История заказов"
+        android:layout_marginTop="8dp" />
 
     <Button
         android:id="@+id/buttonLogout"

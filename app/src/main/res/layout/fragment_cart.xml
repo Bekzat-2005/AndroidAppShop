@@ -5,24 +5,58 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Текст для пустой корзины -->
+    <TextView
+        android:id="@+id/emptyCartText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Корзина пустая"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+    <!-- RecyclerView для отображения товаров -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:visibility="gone" />
 
+    <!-- Общая сумма -->
     <TextView
         android:id="@+id/totalPrice"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Итого: 0 тг"
-        android:textSize="18sp"
-        android:layout_marginVertical="16dp" />
+        android:text="Общая сумма: 0 тг"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone" />
 
-    <Button
-        android:id="@+id/btnCheckout"
-        android:layout_width="match_parent"
+    <!-- Кнопка купить -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
         android:layout_height="wrap_content"
-        android:text="Оформить заказ" />
+        android:layout_marginBottom="64sp">
+
+        <!-- Кнопка очистить корзину -->
+        <Button
+            android:id="@+id/btnClearCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Очистить корзину"
+            android:visibility="gone" />
+        <Button
+            android:id="@+id/btnCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Купить"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+
 </LinearLayout>
-
