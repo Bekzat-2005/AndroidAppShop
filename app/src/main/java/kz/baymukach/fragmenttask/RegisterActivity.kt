@@ -64,7 +64,6 @@ class RegisterActivity : AppCompatActivity() {
                             .addOnCompleteListener { firestoreTask ->
                                 if (firestoreTask.isSuccessful) {
                                     startActivity(Intent(this, LoginActivity::class.java))
-
                                     finish()
 
                                 } else {

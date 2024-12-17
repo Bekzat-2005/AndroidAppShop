@@ -1,5 +1,6 @@
 package kz.baymukach.fragmenttask
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.material.bottomnavigation.BottomNavigationView
 class ProductAdapter(
     private val productList: List<Product>,
-    private val addToCartCallback: (Product) -> Unit,
+    private val onAddToCart: (Product) -> Unit,
     private val onProductClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -34,13 +35,10 @@ class ProductAdapter(
         Glide.with(holder.itemView.context).load(product.imageUrl).into(holder.productImage)
 
 
-        holder.itemView.setOnClickListener {
-            onProductClick(product)
-        }
+        holder.itemView.setOnClickListener { onProductClick(product) }
 
-        holder.cartButton.setOnClickListener {
-            addToCartCallback(product)
-        }
+
+        holder.cartButton.setOnClickListener { onAddToCart(product) }
     }
 
     override fun getItemCount() = productList.size
@@ -52,5 +50,3 @@ class ProductAdapter(
         val cartButton: ImageView = itemView.findViewById(R.id.cartImage)
     }
 }
-
-

@@ -1,39 +1,33 @@
 package kz.baymukach.fragmenttask
 
+
 import android.os.Bundle
-import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 
-class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+class ProductDetailsFragment : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_product_details)
 
-        val productName = view.findViewById<TextView>(R.id.textViewProductName)
-        val productPrice = view.findViewById<TextView>(R.id.textViewProductPrice)
-        val productImage = view.findViewById<ImageView>(R.id.imageViewProduct)
+        // Получаем данные из Intent
+        val productName = intent.getStringExtra("name")
+        val productPrice = intent.getIntExtra("price", 0)
+        val productImageUrl = intent.getStringExtra("imageUrl")
 
-        val name = arguments?.getString("name")
-        val price = arguments?.getInt("price")
-        val imageUrl = arguments?.getString("imageUrl")
+        // Находим элементы интерфейса
+        val productNameTextView = findViewById<TextView>(R.id.textViewProductName)
+        val productPriceTextView = findViewById<TextView>(R.id.textViewProductPrice)
+        val productImageView = findViewById<ImageView>(R.id.imageViewProduct)
+//        val buttonAddToCart = findViewById<Button>(R.id.buttonAddToCart)
 
-        productName.text = name
-        productPrice.text = "${price ?: 0} тг"
-        Glide.with(requireContext()).load(imageUrl).into(productImage)
-    }
+        // Заполняем данные
+        productNameTextView.text = productName
+        productPriceTextView.text = "$productPrice тг"
+        Glide.with(this).load(productImageUrl).into(productImageView)
 
-    companion object {
-        fun newInstance(product: Product): ProductDetailsFragment {
-            val fragment = ProductDetailsFragment()
-            val bundle = Bundle()
-            bundle.putString("name", product.name)
-            bundle.putInt("price", product.price)
-            bundle.putString("imageUrl", product.imageUrl)
-            fragment.arguments = bundle
-            return fragment
-        }
     }
 }

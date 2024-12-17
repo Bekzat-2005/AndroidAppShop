@@ -1,15 +1,16 @@
 package kz.baymukach.fragmenttask
 
+
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+
 class ProductsFragment : Fragment(R.layout.fragment_products) {
     private lateinit var cartViewModel: CartViewModel
 
@@ -35,11 +36,13 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
                     cartViewModel.addToCart(product)
                     Toast.makeText(context, "${product.name} добавлен в корзину", Toast.LENGTH_SHORT).show()
                 }, { product ->
-                    val fragment = ProductDetailsFragment.newInstance(product)
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.frame, fragment)
-                        .addToBackStack(null)
-                        .commit()
+                    // Открытие ProductDetailsActivity
+                    val intent = Intent(requireContext(), ProductDetailsFragment::class.java).apply {
+                        putExtra("name", product.name)
+                        putExtra("price", product.price)
+                        putExtra("imageUrl", product.imageUrl)
+                    }
+                    startActivity(intent)
                 })
             }
             .addOnFailureListener {
@@ -47,6 +50,7 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
             }
     }
 }
+
 
 
 
