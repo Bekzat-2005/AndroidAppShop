@@ -27,6 +27,7 @@ class ProductDetailsFragment : AppCompatActivity() {
         // Заполняем данные
         productNameTextView.text = productName
         productPriceTextView.text = "$productPrice тг"
+
         Glide.with(this).load(productImageUrl).into(productImageView)
 
     }

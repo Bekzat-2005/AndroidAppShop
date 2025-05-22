@@ -25,8 +25,7 @@ class OrderHistoryAdapter(
         holder.orderAddress.text = "Адрес: ${order.address}"
         holder.orderTotal.text = "Сумма: ${order.totalPrice} тг"
         holder.orderItems.text = "Товары: ${
-            order.items.joinToString(", ") { "${it["name"]} x${it["quantity"]}" }
-        }"
+            order.items.joinToString(", ") { "${it["name"]} x${it["quantity"]}" }}"
 
         // Обработчик кнопки "Удалить" с диалогом подтверждения
         holder.btnDeleteOrder.setOnClickListener {

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -22,11 +23,16 @@ class RegisterActivity : AppCompatActivity() {
 
         val btnRegis: Button = findViewById(R.id.btnRegis);
 
+        val txtRegister: TextView = findViewById(R.id.txtRegister);
+
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseFirestore = FirebaseFirestore.getInstance()
 
         btnRegis.setOnClickListener {
             registerUser()
+        }
+        txtRegister.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 
@@ -67,11 +73,11 @@ class RegisterActivity : AppCompatActivity() {
                                     finish()
 
                                 } else {
-                                    Toast.makeText(this, "Error registering user", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "Error ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                                 }
                             }
                     } else {
-                        Toast.makeText(this, "Error registering user", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Error ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
         } else {

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+
 class CartFragment : Fragment(R.layout.fragment_cart) {
     private lateinit var cartViewModel: CartViewModel
     private lateinit var adapter: CartAdapter
@@ -33,6 +34,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+//        cartItems.observe арқылы себет өзгерген кезде UI автоматты түрде жаңартылады.
         cartViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
             if (cartItems.isEmpty()) {
                 // Если корзина пуста
@@ -65,10 +67,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         // Покупка товаров
         buttonCheckout.setOnClickListener {
             val total = cartViewModel.cartItems.value?.sumOf { it.price * it.quantity } ?: 0
-            Toast.makeText(context, "Покупка на сумму $total тг", Toast.LENGTH_SHORT).show()
-
-
             showCheckoutDialog()
+//            Toast.makeText(context, "Покупка на сумму $total тг", Toast.LENGTH_SHORT).show()
+
         }
     }
 

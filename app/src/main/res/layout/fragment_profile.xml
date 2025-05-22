@@ -34,12 +34,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="История заказов"
+        style="@style/MyButtonStyle"
         android:layout_marginTop="8dp" />
 
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/MyButtonStyle"
         android:text="Выйти"
         android:textSize="16sp" />
 </LinearLayout>

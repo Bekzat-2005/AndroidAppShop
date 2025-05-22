@@ -28,6 +28,7 @@ class ProductAdapter(
         return ProductViewHolder(view)
     }
 
+//    obloshka
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
         holder.productName.text = product.name
